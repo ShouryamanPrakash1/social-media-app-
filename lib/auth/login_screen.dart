@@ -6,6 +6,7 @@ import 'package:systemic_altruism/home_screen.dart';
 import 'package:systemic_altruism/widgets/button.dart';
 import 'package:systemic_altruism/widgets/textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:systemic_altruism/community_hub/post_page.dart';  // Add this
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -86,7 +87,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (user != null) {
       log("User Logged In");
-      goToHome(context);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) =>  PostFeedPage()),  // 🚀 Go to PostFeedPage
+      );
     }
   }
 }

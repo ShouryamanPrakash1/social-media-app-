@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:systemic_altruism/auth/auth_service.dart';
 import 'package:systemic_altruism/auth/login_screen.dart';
 import 'package:systemic_altruism/widgets/button.dart';
-import 'package:flutter/material.dart';
+import 'package:systemic_altruism/community_hub/post_page.dart';  // Import this
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,19 +22,29 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             CustomButton(
+              label: "Community Hub",
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => PostFeedPage()),
+                );
+              },
+            ),
+            const SizedBox(height: 10),
+            CustomButton(
               label: "Sign Out",
               onPressed: () async {
                 await auth.signout();
                 goToLogin(context);
               },
-            )
+            ),
           ],
         ),
       ),
     );
   }
 
-  goToLogin(BuildContext context) => Navigator.push(
+  goToLogin(BuildContext context) => Navigator.pushReplacement(
     context,
     MaterialPageRoute(builder: (context) => const LoginScreen()),
   );
